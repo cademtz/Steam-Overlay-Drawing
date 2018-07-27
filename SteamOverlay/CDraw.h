@@ -5,7 +5,10 @@ class CDrawManager
 {
 public:
 	void Rect(int x, int y, int w, int h, Color color);
-	void Text(int x, int y, const char* szText, Color color, ID3DXFont* font = nullptr);
+	void OutlineRect(float x, float y, float w, float h, Color color);
+	void Line(float x1, float y1, float x2, float y2, Color color);
+	void Text(int x, int y, const char* szText, Color color, ID3DXFont* Font = nullptr);
+	RECT TextSize(const char* szText, ID3DXFont* Font = nullptr);
 
 	ID3DXFont* Tahoma = nullptr;
 
