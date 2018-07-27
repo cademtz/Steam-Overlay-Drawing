@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{d28bb8cb-2354-4ecc-946b-68c53189a0a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Hooks">
+      <UniqueIdentifier>{14350aca-f428-4f7a-9946-ac703f633145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Offsets">
+      <UniqueIdentifier>{4398fe69-5b8d-49c8-904e-d0f00f855e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Paint">
+      <UniqueIdentifier>{37dccc00-63d3-47db-b485-0e513bf086ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\DrawManager">
+      <UniqueIdentifier>{6304ca4d-fc25-413d-af64-deaa48993dc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Base.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlayHooks.h">
+      <Filter>Base\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="CSignature.h">
+      <Filter>Base\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="CDraw.h">
+      <Filter>Base\DrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Base\DrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Paint.h">
+      <Filter>Paint</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OverlayHooks.cpp">
+      <Filter>Base\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="CSignature.cpp">
+      <Filter>Base\Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="CDraw.cpp">
+      <Filter>Base\DrawManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Paint.cpp">
+      <Filter>Paint</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
