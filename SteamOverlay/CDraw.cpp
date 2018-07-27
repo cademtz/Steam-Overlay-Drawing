@@ -16,7 +16,7 @@ void CDrawManager::CreateFonts()
 		gBase.Fatal("Couldn't initialize fonts with the drawing device.");
 }
 
-void CDrawManager::Rect(int x, int y, int w, int h, Color color)
+void CDrawManager::Rect(long x, long y, long w, long h, Color color)
 {
 	SAFEDRAW();
 	
@@ -24,7 +24,7 @@ void CDrawManager::Rect(int x, int y, int w, int h, Color color)
 	pDevice->Clear(1, &pos, D3DCLEAR_TARGET | D3DCLEAR_TARGET, color.ARGB(), 0, 0);
 }
 
-void CDrawManager::OutlineRect(float x, float y, float w, float h, Color color)
+void CDrawManager::OutlineRect(long x, long y, long w, long h, Color color)
 {
 	SAFEDRAW();
 
@@ -34,7 +34,7 @@ void CDrawManager::OutlineRect(float x, float y, float w, float h, Color color)
 	Line(x + w, y, x + w, y + h, color);
 }
 
-void CDrawManager::Line(float x1, float y1, float x2, float y2, Color color)
+void CDrawManager::Line(long x1, long y1, long x2, long y2, Color color, float width)
 {
 	SAFEDRAW();
 
@@ -42,13 +42,18 @@ void CDrawManager::Line(float x1, float y1, float x2, float y2, Color color)
 	if (!line)
 		D3DXCreateLine(pDevice, &line);
 
-	D3DXVECTOR2 points[2] = { {x1, y1}, {x2, y2} };
+	D3DXVECTOR2 points[2] = { { float(x1), float(y1) }, { float(x2), float(y2) } };
+	line->SetWidth(width);
 	line->Draw(points, 2, color.ARGB());
 }
 
-void CDrawManager::Text(int x, int y, const char* szText, Color color, ID3DXFont* Font)
+RECT CDrawManager::Text(long x, long y, const char* szText, Color color, ID3DXFont* Font)
 {
-	SAFEDRAW();
+	if (!pDevice)
+	{
+		gBase.Fatal("CDrawManager recieved an invalid drawing device.");
+		return RECT();
+	}
 
 	if (!Font)
 		Font = Tahoma;
@@ -56,6 +61,7 @@ void CDrawManager::Text(int x, int y, const char* szText, Color color, ID3DXFont
 	RECT pos = { x, y, x, y };
 	Font->DrawTextA(NULL, szText, -1, &pos, DT_CALCRECT, color.ARGB());
 	Font->DrawTextA(NULL, szText, -1, &pos, DT_LEFT, color.ARGB());
+	return pos;
 }
 
 RECT CDrawManager::TextSize(const char* szText, ID3DXFont* Font)
